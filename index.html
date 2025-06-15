@@ -3,567 +3,788 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orion Codes Roblox Studio Developer | Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>OrionStudio - Desenvolvedores Roblox</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        
+        :root {
+            --primary-dark: #3a0ca3;
+            --primary: #7209b7;
+            --primary-light: #b5179e;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #0f172a;
-            color: #e2e8f0;
-            scroll-behavior: smooth;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: var(--light);
+            overflow-x: hidden;
         }
-        
-        .hero-gradient {
-            background: linear-gradient(135deg, #1e40af 0%, #7e22ce 100%);
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+        /* Header */
+        header {
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            background-color: var(--glass);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
-        .skill-badge {
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #b5179e, #f72585);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
             transition: all 0.3s ease;
         }
-        
-        .skill-badge:hover {
-            transform: scale(1.05);
+
+        nav a:hover {
+            color: var(--accent);
         }
-        
-        .nav-link {
-            position: relative;
-        }
-        
-        .nav-link::after {
+
+        nav a::after {
             content: '';
             position: absolute;
             width: 0;
             height: 2px;
-            bottom: -2px;
+            bottom: -5px;
             left: 0;
-            background-color: #3b82f6;
+            background-color: var(--accent);
             transition: width 0.3s ease;
         }
-        
-        .nav-link:hover::after {
+
+        nav a:hover::after {
             width: 100%;
         }
-        
-        .active-nav::after {
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(114, 9, 183, 0.2) 0%, rgba(10, 10, 10, 0) 70%);
+            animation: pulse 15s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(1.2);
+                opacity: 0.8;
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, #b5179e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, var(--primary), var(--primary-light));
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(183, 23, 158, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(183, 23, 158, 0.4);
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary-light), var(--accent));
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
-        
-        .floating {
-            animation: floating 3s ease-in-out infinite;
+
+        .btn:hover::after {
+            opacity: 1;
         }
-        
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+
+        .btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-image {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50%;
+            max-width: 600px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(-50%) translateX(0);
+            }
+            50% {
+                transform: translateY(-50%) translateX(20px);
+            }
+        }
+
+        /* Games Section */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            display: inline-block;
+            background: linear-gradient(to right, #b5179e, #f72585);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .game-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .game-card-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .game-card-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(10, 10, 10, 0.7), transparent);
+        }
+
+        .game-card:nth-child(1) .game-card-image {
+            background-image: url('https://via.placeholder.com/600x400/3a0ca3/ffffff?text=RoleLife');
+        }
+
+        .game-card:nth-child(2) .game-card-image {
+            background-image: url('https://via.placeholder.com/600x400/7209b7/ffffff?text=Rinx+e+Blix');
+        }
+
+        .game-card:nth-child(3) .game-card-image {
+            background-image: url('https://via.placeholder.com/600x400/b5179e/ffffff?text=Click+Simulator');
+        }
+
+        .game-card-content {
+            padding: 20px;
+        }
+
+        .game-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .game-card p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .game-card .btn {
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            font-size: 0.9rem;
+        }
+
+        /* Team Section */
+        .team-section {
+            background: rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .team-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://via.placeholder.com/1920x1080/0f0c29/ffffff?text=OrionStudio') center/cover no-repeat;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .team-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .team-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, var(--primary), var(--primary-light));
+            border-radius: 50%;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .team-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .team-card p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(to right, #0f0c29, #302b63);
+            padding: 60px 0 20px;
+            position: relative;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: white;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero-image {
+                width: 45%;
+                opacity: 0.7;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: rgba(10, 10, 10, 0.9);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 40px;
+                transition: all 0.5s ease;
+                backdrop-filter: blur(10px);
+            }
+
+            nav ul.active {
+                left: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                text-align: center;
+                padding-top: 120px;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .hero-image {
+                position: relative;
+                width: 80%;
+                margin: 40px auto 0;
+                transform: none;
+                top: auto;
+                right: auto;
+                animation: float-mobile 6s ease-in-out infinite;
+            }
+
+            @keyframes float-mobile {
+                0%, 100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-20px);
+                }
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .btn {
+                padding: 10px 25px;
+            }
+
+            .section {
+                padding: 70px 0;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="fixed w-full bg-slate-900/80 backdrop-blur-md z-50 shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <span class="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Orion Codes</span>
-                    </div>
-                </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#home" class="nav-link text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
-                        <a href="#projects" class="nav-link text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Projetos</a>
-                        <a href="#skills" class="nav-link text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Membros Equipe</a>
-                        <a href="#about" class="nav-link text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Sobre</a>
-                        <a href="#contact" class="nav-link text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contato</a>
-                    </div>
-                </div>
-                <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-gray-300 hover:text-white focus:outline-none">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                </div>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="https://via.placeholder.com/40/ffffff/3a0ca3?text=OS" alt="OrionStudio Logo">
+                <span class="logo-text">OrionStudio</span>
             </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#games">Nossos Jogos</a></li>
+                    <li><a href="#team">Nossa Equipe</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+            </nav>
         </div>
-        
-        <!-- Mobile menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-slate-800">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#home" class="nav-link text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Home</a>
-                <a href="#projects" class="nav-link text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Projetos</a>
-                <a href="#skills" class="nav-link text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Membros Equipe</a>
-                <a href="#about" class="nav-link text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Sobre</a>
-                <a href="#contact" class="nav-link text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contato</a>
-            </div>
-        </div>
-    </nav>
+    </header>
 
     <!-- Hero Section -->
-    <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24 hero-gradient">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0">
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">Criando experiências incríveis no <span class="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">Roblox</span></h1>
-                    <p class="text-lg text-gray-200 mb-8">Desenvolvedor especializado em criar jogos e sistemas complexos no Roblox Studio com Lua.</p>
-                    <div class="flex space-x-4">
-                        <a href="#projects" class="bg-white text-blue-600 hover:bg-gray-100 px-6 py-3 rounded-lg font-semibold transition duration-300">Ver Projetos</a>
-                        <a href="#contact" class="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-6 py-3 rounded-lg font-semibold transition duration-300">Contato</a>
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Criando experiências únicas dentro do Roblox</h1>
+                <p>Bem-vindo ao <span class="highlight">OrionStudio</span>, um grupo de desenvolvedores apaixonados por criar jogos imersivos e divertidos na plataforma Roblox. Nossa missão é entregar experiências memoráveis para jogadores de todas as idades.</p>
+                <a href="#games" class="btn"><span>Explorar Jogos</span></a>
+            </div>
+            <div class="hero-image">
+                <img src="https://via.placeholder.com/600x400/3a0ca3/ffffff?text=OrionStudio" alt="OrionStudio Games" style="width:100%; border-radius:15px; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
+            </div>
+        </div>
+    </section>
+
+    <!-- Games Section -->
+    <section class="section" id="games">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nossos Jogos</h2>
+            </div>
+            <div class="games-grid">
+                <!-- Game 1 -->
+                <div class="game-card">
+                    <div class="game-card-image"></div>
+                    <div class="game-card-content">
+                        <h3>RoleLife (RP)</h3>
+                        <p>Um jogo de Roleplay com foco em vida real, onde você pode criar sua própria história, escolher profissões e interagir com outros jogadores em um mundo dinâmico.</p>
+                        <a href="#" class="btn"><span>Jogar Agora</span></a>
                     </div>
                 </div>
-                <div class="md:w-1/2 flex justify-center">
-                    <div class="relative w-64 h-64 md:w-80 md:h-80">
-                        <div class="absolute inset-0 bg-blue-500 rounded-full opacity-20 blur-xl"></div>
-                        <img src="24766d679ad77687d49ffe4eb70215f0.png" alt="Avatar" class="relative w-full h-full rounded-full object-cover border-4 border-white floating">
+                <!-- Game 2 -->
+                <div class="game-card">
+                    <div class="game-card-image"></div>
+                    <div class="game-card-content">
+                        <h3>Rinx e Blix (RPG)</h3>
+                        <p>Um RPG de aventura emocionante com sistema de combate complexo, evolução de personagem e um mundo vasto para explorar cheio de mistérios e desafios.</p>
+                        <a href="#" class="btn"><span>Jogar Agora</span></a>
+                    </div>
+                </div>
+                <!-- Game 3 -->
+                <div class="game-card">
+                    <div class="game-card-image"></div>
+                    <div class="game-card-content">
+                        <h3>Click Simulator</h3>
+                        <p>Um viciante jogo de clique com sistema de upgrades, conquistas e rebirths. Quanto mais você joga, mais poderoso fica! Desafie seus amigos e suba no ranking.</p>
+                        <a href="#" class="btn"><span>Jogar Agora</span></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-16 bg-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-white mb-2">Meus Projetos no Roblox</h2>
-                <div class="w-20 h-1 bg-blue-500 mx-auto"></div>
+    <!-- Team Section -->
+    <section class="section team-section" id="team">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nossa Equipe</h2>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="project-card bg-slate-700 rounded-xl overflow-hidden shadow-lg transition duration-300">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="ChatGPT Image 8 de jun. de 2025, 18_41_11.png" alt="Project 1" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                        <div class="absolute bottom-4 left-4">
-                            <span class="bg-blue-500 text-white text-xs font-semibold px-2 py-1 rounded">Jogo RPG</span>
-                        </div>
+            <div class="team-grid">
+                <!-- Team Member 1 -->
+                <div class="team-card">
+                    <div class="team-icon">
+                        <i class="fas fa-crown"></i>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-2">Rinx & Blix</h3>
-                        <p class="text-gray-300 mb-4">Um jogo RPG completo com sistema de missões, inventário, habilidades e batalhas.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="skill-badge bg-slate-600 text-blue-300 text-xs px-3 py-1 rounded-full">Lore</span>
-                            <span class="skill-badge bg-slate-600 text-blue-300 text-xs px-3 py-1 rounded-full">Divertido</span>
-                            <span class="skill-badge bg-slate-600 text-blue-300 text-xs px-3 py-1 rounded-full">Puzzle</span>
-                        </div>
-                        <a href="#" class="text-blue-400 hover:text-blue-300 font-medium inline-flex items-center">
-                            Ver mais <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                    </div>
+                    <h3>OWNER</h3>
+                    <p>Lidera e coordena toda a equipe, garantindo a visão do projeto</p>
                 </div>
-                
-                <!-- Project 2 -->
-                <div class="project-card bg-slate-700 rounded-xl overflow-hidden shadow-lg transition duration-300">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="Simulador de Cliques Antigos.png" alt="Project 2" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                        <div class="absolute bottom-4 left-4">
-                            <span class="bg-purple-500 text-white text-xs font-semibold px-2 py-1 rounded">Simulador</span>
-                        </div>
+                <!-- Team Member 2 -->
+                <div class="team-card">
+                    <div class="team-icon">
+                        <i class="fas fa-code"></i>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-2">Simulador de Click</h3>
-                        <p class="text-gray-300 mb-4">Toque o mais rápido que puder para ganhar cliques e desbloquear upgrades incríveis! Use seus cliques para comprar pets, renascimentos e acessar novas áreas. Será que você consegue chegar ao topo do ranking?</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="skill-badge bg-slate-600 text-blue-300 text-xs px-3 py-1 rounded-full">Simulador</span>
-                            <span class="skill-badge bg-slate-600 text-blue-300 text-xs px-3 py-1 rounded-full">Divertido</span>
-                            <span class="skill-badge bg-slate-600 text-blue-300 text-xs px-3 py-1 rounded-full">Magnata</span>
-                        </div>
-                        <a href="#" class="text-blue-400 hover:text-blue-300 font-medium inline-flex items-center">
-                            Ver mais <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                    </div>
+                    <h3>SCRIPTERS</h3>
+                    <p>Responsáveis pela programação e mecânicas dos jogos</p>
                 </div>
-                
-                <!-- Project 3 -->
-                <div class="project-card bg-slate-700 rounded-xl overflow-hidden shadow-lg transition duration-300">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="Roblox_Life_Logos_Concepts_1.png" alt="Project 3" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                        <div class="absolute bottom-4 left-4">
-                            <span class="bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded">RP</span>
-                        </div>
+                <!-- Team Member 3 -->
+                <div class="team-card">
+                    <div class="team-icon">
+                        <i class="fas fa-cube"></i>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-2">RolePlay</h3>
-                        <p class="text-gray-300 mb-4">Bem-vindo ao mundo onde cada escolha define seu destino, viva histórias únicas, crie alianças e escreva sua própria jornada.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="skill-badge bg-slate-600 text-blue-300 text-xs px-3 py-1 rounded-full">Jogo da Vida</span>
-                            <span class="skill-badge bg-slate-600 text-blue-300 text-xs px-3 py-1 rounded-full">Exploração</span>
-                            <span class="skill-badge bg-slate-600 text-blue-300 text-xs px-3 py-1 rounded-full">Empregos</span>
-                        </div>
-                        <a href="#" class="text-blue-400 hover:text-blue-300 font-medium inline-flex items-center">
-                            Ver mais <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                    </div>
+                    <h3>BUILDERS</h3>
+                    <p>Criam os ambientes e mapas dos nossos jogos</p>
                 </div>
-            </div>
-            
-            <div class="text-center mt-12">
-                <a href="#" class="inline-flex items-center px-6 py-3 border border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white rounded-lg font-medium transition duration-300">
-                    Ver todos os projetos <i class="fas fa-external-link-alt ml-2"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="py-16 bg-slate-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-white mb-2">Equipes</h2>
-                <div class="w-20 h-1 bg-blue-500 mx-auto"></div>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Skill 1 -->
-                <div class="bg-slate-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition duration-300">
-                    <div class="w-16 h-16 bg-blue-500/10 rounded-lg flex items-center justify-center mb-4">
-                        <i class="fas fa-code text-blue-400 text-2xl"></i>
+                <!-- Team Member 4 -->
+                <div class="team-card">
+                    <div class="team-icon">
+                        <i class="fas fa-running"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Scripts</h3>
-                    <p class="text-gray-300">Yzac, Zohan, Gtw7, Astae.</p>
+                    <h3>ANIMADORES</h3>
+                    <p>Desenvolvem animações fluidas para os personagens</p>
                 </div>
-                
-                <!-- Skill 2 -->
-                <div class="bg-slate-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition duration-300">
-                    <div class="w-16 h-16 bg-purple-500/10 rounded-lg flex items-center justify-center mb-4">
-                        <i class="fas fa-gamepad text-purple-400 text-2xl"></i>
+                <!-- Team Member 5 -->
+                <div class="team-card">
+                    <div class="team-icon">
+                        <i class="fas fa-shapes"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Builders</h3>
-                    <p class="text-gray-300">Sra Lin, Gomes, PJ, Thz.</p>
+                    <h3>MODELLERS</h3>
+                    <p>Criam modelos 3D personalizados para os jogos</p>
                 </div>
-                
-                <!-- Skill 3 -->
-                <div class="bg-slate-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition duration-300">
-                    <div class="w-16 h-16 bg-green-500/10 rounded-lg flex items-center justify-center mb-4">
-                        <i class="fas fa-users text-green-400 text-2xl"></i>
+                <!-- Team Member 6 -->
+                <div class="team-card">
+                    <div class="team-icon">
+                        <i class="fas fa-magic"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Animador</h3>
-                    <p class="text-gray-300">NerdItadori, Reo.</p>
-                </div>
-                
-                <!-- Skill 4 -->
-                <div class="bg-slate-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition duration-300">
-                    <div class="w-16 h-16 bg-yellow-500/10 rounded-lg flex items-center justify-center mb-4">
-                        <i class="fas fa-paint-brush text-yellow-400 text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">UI/UX Design</h3>
-                    <p class="text-gray-300">Sra Lin, Hyvex, Furny, Gtw7, Riam, Yzac.</p>
-                </div>
-            </div>
-
-<div class="bg-slate-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition duration-300">
-  <div class="w-16 h-16 bg-green-500/10 rounded-lg flex items-center justify-center mb-4">
-    <i class="fas fa-cube text-green-400 text-2xl"></i>
-  </div>
-  <h3 class="text-xl font-bold text-white mb-2">Model</h3>
-  <p class="text-gray-300">Suprem, SraLin</p>
-</div>
-<div class="bg-slate-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition duration-300">
-    <div class="w-16 h-16 bg-indigo-500/10 rounded-lg flex items-center justify-center mb-4">
-      <i class="fas fa-crown text-indigo-400 text-2xl"></i>
-    </div>
-    <h3 class="text-xl font-bold text-white mb-2">Owner</h3>
-    <p class="text-gray-300">Yzac, Whalie</p>
-  </div>
-            </div>
-            
-            <div class="mt-12 bg-slate-800 rounded-xl p-8">
-                <h3 class="text-2xl font-bold text-white mb-6">Habilidades da Equipe</h3>
-                <div class="flex flex-wrap gap-4">
-                    <div class="flex items-center bg-slate-700 px-4 py-2 rounded-full">
-                        <i class="fab fa-roblox text-red-500 mr-2"></i>
-                        <span class="text-white">Roblox Studio</span>
-                    </div>
-                    <div class="flex items-center bg-slate-700 px-4 py-2 rounded-full">
-                        <i class="fas fa-code text-blue-400 mr-2"></i>
-                        <span class="text-white">Lua</span>
-                    </div>
-                    <div class="flex items-center bg-slate-700 px-4 py-2 rounded-full">
-                        <i class="fas fa-database text-green-400 mr-2"></i>
-                        <span class="text-white">Data Stores</span>
-                    </div>
-                    <div class="flex items-center bg-slate-700 px-4 py-2 rounded-full">
-                        <i class="fas fa-network-wired text-purple-400 mr-2"></i>
-                        <span class="text-white">Remote Events</span>
-                    </div>
-                    <div class="flex items-center bg-slate-700 px-4 py-2 rounded-full">
-                        <i class="fas fa-cubes text-yellow-400 mr-2"></i>
-                        <span class="text-white">3D Modeling</span>
-                    </div>
-                    <div class="flex items-center bg-slate-700 px-4 py-2 rounded-full">
-                        <i class="fas fa-mobile-alt text-blue-300 mr-2"></i>
-                        <span class="text-white">UI Design</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-16 bg-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
-                    <div class="relative">
-                        <div class="absolute -top-6 -left-6 w-32 h-32 bg-blue-500 rounded-full opacity-20 blur-xl"></div>
-                        <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-purple-500 rounded-full opacity-20 blur-xl"></div>
-                        <img src="24766d679ad77687d49ffe4eb70215f0.png" alt="About" class="relative w-full rounded-xl shadow-lg z-10">
-                    </div>
-                </div>
-                <div class="md:w-1/2">
-                    <h2 class="text-3xl font-bold text-white mb-6">Orion Codes 🍪</h2>
-                    <p class="text-gray-300 mb-4">Somos uma equipe dedicada à criação de jogos no Roblox Studio. Com apenas 1 mês de existência, já estamos trabalhando em projetos promissores que combinam sistemas únicos, jogabilidade envolvente e visual caprichado.</p>
-                    <p class="text-gray-300 mb-6">Nosso foco é desenvolver experiências divertidas e criativas, sempre buscando inovação e qualidade. A cada semana, novas funcionalidades e melhorias são adicionadas aos nossos jogos.</p>
-                    
-                    <div class="grid grid-cols-2 gap-4 mb-8">
-                        <div class="bg-slate-700 p-4 rounded-lg">
-                            <div class="text-blue-400 text-2xl mb-2">
-                                <i class="fas fa-project-diagram"></i>
-                            </div>
-                            <h4 class="text-white font-semibold mb-1"> 1+ Projetos</h4>
-                            <p class="text-gray-300 text-sm">Desenvolvidos e publicados</p>
-                        </div>
-                        <div class="bg-slate-700 p-4 rounded-lg">
-                            <div class="text-purple-400 text-2xl mb-2">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <h4 class="text-white font-semibold mb-1">0+ Jogadores</h4>
-                            <p class="text-gray-300 text-sm">Em meus jogos</p>
-                        </div>
-                    </div>
-                    
-                    <a href="#contact" class="inline-flex items-center px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-medium transition duration-300">
-                        Vamos trabalhar juntos <i class="fas fa-paper-plane ml-2"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-slate-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-white mb-2">Entre em Contato</h2>
-                <div class="w-20 h-1 bg-blue-500 mx-auto"></div>
-                <p class="text-gray-300 mt-4 max-w-2xl mx-auto">Estou disponível para novos projetos e colaborações. Envie uma mensagem e vamos conversar sobre suas ideias!</p>
-            </div>
-            
-            <div class="flex flex-col md:flex-row gap-10">
-                <div class="md:w-1/2">
-                    <form class="space-y-6">
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Nome</label>
-                            <input type="text" id="name" class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Seu nome">
-                        </div>
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email</label>
-                            <input type="email" id="email" class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="seu@email.com">
-                        </div>
-                        <div>
-                            <label for="subject" class="block text-sm font-medium text-gray-300 mb-1">Assunto</label>
-                            <input type="text" id="subject" class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Sobre o que você quer falar?">
-                        </div>
-                        <div>
-                            <label for="message" class="block text-sm font-medium text-gray-300 mb-1">Mensagem</label>
-                            <textarea id="message" rows="5" class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Descreva seu projeto ou dúvida..."></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg transition duration-300">
-                            Enviar Mensagem <i class="fas fa-paper-plane ml-2"></i>
-                        </button>
-                    </form>
-                </div>
-                
-                <div class="md:w-1/2">
-                    <div class="bg-slate-800 rounded-xl p-8 h-full">
-                        <h3 class="text-2xl font-bold text-white mb-6">Informações de Contato</h3>
-                        
-                        <div class="space-y-6">
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0 bg-blue-500/10 p-3 rounded-lg">
-                                    <i class="fas fa-envelope text-blue-400 text-xl"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <h4 class="text-lg font-medium text-white">Email</h4>
-                                    <p class="text-gray-300">?</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0 bg-purple-500/10 p-3 rounded-lg">
-                                    <i class="fab fa-discord text-purple-400 text-xl"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <h4 class="text-lg font-medium text-white">Discord</h4>
-                                    <p class="text-gray-300">YzacXD</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0 bg-red-500/10 p-3 rounded-lg">
-                                    <i class="fab fa-roblox text-red-400 text-xl"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <h4 class="text-lg font-medium text-white">Roblox</h4>
-                                    <p class="text-gray-300">Yzac</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0 bg-blue-400/10 p-3 rounded-lg">
-                                    <i class="fab fa-twitter text-blue-300 text-xl"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <h4 class="text-lg font-medium text-white">Twitter</h4>
-                                    <p class="text-gray-300">@?</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-8">
-                            <h4 class="text-lg font-medium text-white mb-4">Redes Sociais</h4>
-                            <div class="flex space-x-4">
-                                <a href="#" class="w-10 h-10 bg-slate-700 hover:bg-blue-500 rounded-full flex items-center justify-center transition duration-300">
-                                    <i class="fab fa-twitter text-white"></i>
-                                </a>
-                                <a href="#" class="w-10 h-10 bg-slate-700 hover:bg-purple-500 rounded-full flex items-center justify-center transition duration-300">
-                                    <i class="fab fa-discord text-white"></i>
-                                </a>
-                                <a href="#" class="w-10 h-10 bg-slate-700 hover:bg-red-500 rounded-full flex items-center justify-center transition duration-300">
-                                    <i class="fab fa-youtube text-white"></i>
-                                </a>
-                                <a href="#" class="w-10 h-10 bg-slate-700 hover:bg-blue-700 rounded-full flex items-center justify-center transition duration-300">
-                                    <i class="fab fa-linkedin-in text-white"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    <h3>VFX Artists</h3>
+                    <p>Produzem efeitos visuais impressionantes</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-slate-950 py-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-4 md:mb-0">
-                    <span class="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Orion Codes</span>
-                    <p class="text-gray-400 text-sm mt-1">Criando experiências incríveis no Roblox</p>
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>OrionStudio</h3>
+                    <p>Criando experiências únicas e memoráveis no Roblox desde 2020.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-roblox"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
                 </div>
-                <div class="flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
-                        <i class="fab fa-discord"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
-                        <i class="fab fa-roblox"></i>
-                    </a>
+                <div class="footer-column">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#games">Nossos Jogos</a></li>
+                        <li><a href="#team">Nossa Equipe</a></li>
+                        <li><a href="#">Termos de Serviço</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <ul>
+                        <li><a href="mailto:contact@orionstudio.com">contact@orionstudio.com</a></li>
+                        <li><a href="#">Nosso Discord</a></li>
+                        <li><a href="#">Grupo Roblox</a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="border-t border-slate-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 OrionCodes. Todos os direitos reservados.</p>
-                <div class="flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-white text-sm transition duration-300">Termos de Serviço</a>
-                    <a href="#" class="text-gray-400 hover:text-white text-sm transition duration-300">Política de Privacidade</a>
-                </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 OrionStudio. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-button').addEventListener('click', function() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navMenu.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
         });
 
-        // Smooth scrolling for navigation links
+        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 
-                // Close mobile menu if open
-                const mobileMenu = document.getElementById('mobile-menu');
-                if (!mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.classList.add('hidden');
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
                 }
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Update active nav
-                    document.querySelectorAll('.nav-link').forEach(link => {
-                        link.classList.remove('active-nav');
-                    });
-                    this.classList.add('active-nav');
-                }
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
         });
 
-        // Update active nav on scroll
-        window.addEventListener('scroll', function() {
-            const scrollPosition = window.scrollY;
-            
-            document.querySelectorAll('section').forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                const sectionHeight = section.offsetHeight;
-                const sectionId = section.getAttribute('id');
-                
-                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                    document.querySelectorAll('.nav-link').forEach(link => {
-                        link.classList.remove('active-nav');
-                        if (link.getAttribute('href') === `#${sectionId}`) {
-                            link.classList.add('active-nav');
-                        }
-                    });
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
                 }
             });
-        });
+        }, observerOptions);
 
-        // Form submission
-        const contactForm = document.querySelector('form');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Get form values
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const subject = document.getElementById('subject').value;
-                const message = document.getElementById('message').value;
-                
-                // Here you would typically send the form data to a server
-                // For this example, we'll just show an alert
-                alert(`Obrigado, ${name}! Sua mensagem foi enviada com sucesso. Entrarei em contato em breve.`);
-                
-                // Reset form
-                contactForm.reset();
-            });
-        }
+        document.querySelectorAll('.game-card, .team-card').forEach(card => {
+            observer.observe(card);
+        });
     </script>
 </body>
 </html>
